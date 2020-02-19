@@ -8,26 +8,35 @@ import sys
 # recursive solution
 # A cache is a way to store a limited amount of data such that future requests for said data can be retrieved faster.
 
-def eating_cookies(n, cache={}):
+def eating_cookies(n, cache={1:1, 2:2, 3:4}):
   
+  # if n in cache:
+  #   return cache[n]
+  if cache == None:
+    cache = {}
+
   if n < 0:
     return 0
 
   if n == 0:
     return 1
 
-  if n == 1:
-    return 1
+  # if n == 1:
+  #   return 1
 
-  if n == 2:
-    return 2
+  # if n == 2:
+  #   return 2
 
-  if n == 3:
-    return 4
+  # if n == 3:
+  #   return 4
 
   if n not in cache:
-    cache[n] = eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+    cache[n] = eating_cookies(n-1,cache) + eating_cookies(n-2,cache) + eating_cookies(n-3,cache)
   return cache[n]
+
+# cache = {1:1, 2:2, 3:4}
+# print(eating_cookies(0, cache))
+# print(cache)
 
   # Should this be printing out line 37? sys.argv > 1
 
